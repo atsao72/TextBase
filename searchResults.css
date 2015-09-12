@@ -12,12 +12,19 @@ h1 {
     padding-left: 15px;
     text-align: left;
     font-size: 50px;
+    display: inline-block;
 }
 
 h2{
     padding-left: 15px;
     text-align: center;
     font-size: 50px;
+}
+
+#searchIcon{
+    float: right;
+    width: 70px;
+    height: 70px;
 }
 
 @font-face {

@@ -1,3 +1,7 @@
+function goHome(){
+    window.open("index.html", "_self", false);
+}
+
 function createBook(title) {
   var Book = Parse.Object.extend("Book");
   var book = new Book();
