@@ -56,11 +56,24 @@ function loadResults(){
     query.equalTo("title", searchString);
     query.find({
     success: function(results) {
-        var list = document.getElementsByTagName("ul")[0];
         for(var i = 0; i < results.length; i++){
-            var li = document.createElement("li");
-            li.appendChild(document.createTextNode(results[i].get("title")));
-            list.appendChild(li);
+            var div = document.getElementById("bookEntry");
+            var h1 = document.getElementById("title");
+            h1.innerHTML = results[i].get("title");
+            /*var p1 = document.getElementById("author");
+            var authorsStr = "";
+            for(int j = 0; j < results[i].get("authors").length; i++){
+                authorsStr = authorsStr + ", " + results[i].get("authors")[j];
+            }
+            p1.innerHTML = authorsStr;
+            var p2 = document.getElementById("course");
+            p2.textContent = results[i].get("course");
+            var p3 = document.getElementById("college");
+            var schoolStr = "";
+            for(int j = 0; j < results[i].get("schools").length; i++){
+                authorsStr = authorsStr + ", " + results[i].get("schools")[j];
+            }
+            p3.textContent = schoolStr*/
         }
     },
     error: function(error) {
