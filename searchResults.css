@@ -1,20 +1,26 @@
-.center {
-    text-align: center;
-    align: center;
+body {
     font-family: niceLooking;
 }
 
-#textBase {
-    font-size: 500%;
+p {
+    padding-left: 15px;
+    text-align: left;
+    font-size: 30px;
 }
-#subtext {
-    font-size: 200%;
+
+h1 {
+    padding-left: 15px;
+    text-align: left;
+    font-size: 50px;
 }
 
-
-
+h2{
+    padding-left: 15px;
+    text-align: center;
+    font-size: 50px;
+}
 
 @font-face {
     font-family: niceLooking;
-    src: url("Kirkuvanpunainenkirsikka.ttf");
+    src: url("fonts/Kirkuvanpunainenkirsikka.ttf");
 }
