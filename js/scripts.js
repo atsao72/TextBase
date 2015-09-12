@@ -155,8 +155,7 @@ function submitReview(){
     review.set("isNecessary", didRecommend);
     review.save(null, {
       success: function(review) {
-        var bookId = parseBookId();
-
+        var bookId = parseId();
         var Book = Parse.Object.extend("Book");
         var query = new Parse.Query(Book);
         query.get(bookId, {
@@ -167,6 +166,7 @@ function submitReview(){
               object.save(null, {
                   success: function(object){
                       alert('Thank you for reviewing this textbook!');
+                      window.open("index.html", "_self", false);
                   },
                   error: function(object,error){
                   }
