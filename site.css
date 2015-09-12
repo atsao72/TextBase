@@ -20,7 +20,7 @@ body {
     font-size: 28px;
 }
 
-#schoolButton, #bookButton{
+#schoolButton, #bookButton, #submitButton{
     width: auto;
     font-size: 25px;
 }
@@ -30,10 +30,14 @@ body {
     font-size: 25px;
 }
 
+#reviewInput{
+    height: 400px;
+    width: 50%;
+}
+
 #inputHolder{
     text-align: center;
 }
-
 
 h1 {
     font-family: Georgia, serif;
