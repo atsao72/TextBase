@@ -68,20 +68,32 @@ function loadResults(){
             var h1 = document.getElementById("title");
             h1.innerHTML = results[i].get("title");
             bookId = results[i].id;
-            /*var p1 = document.getElementById("author");
-            var authorsStr = "";
-            for(int j = 0; j < results[i].get("authors").length; i++){
-                authorsStr = authorsStr + ", " + results[i].get("authors")[j];
+            var p1 = document.getElementById("author");
+            var authorsStr = p1.innerHTML + ": ";
+            var array = results[i].get("authors");
+            for(var j = 0; j < array.length; j++){
+                if(j == 0){
+                    authorsStr = authorsStr + array[j];
+                }
+                else{
+                    authorsStr = authorsStr + ", " + array[j];
+                }
             }
             p1.innerHTML = authorsStr;
             var p2 = document.getElementById("course");
-            p2.textContent = results[i].get("course");
+            p2.innerHTML = p2.innerHTML + ": " + results[i].get("course");
             var p3 = document.getElementById("college");
-            var schoolStr = "";
-            for(int j = 0; j < results[i].get("schools").length; i++){
-                authorsStr = authorsStr + ", " + results[i].get("schools")[j];
+            var schoolStr = p3.innerHTML + ": ";
+            array = results[i].get("schools");
+            for(var j = 0; j < array.length; j++){
+                if(j==0){
+                    schoolStr = schoolStr + array[j];
+                }
+                else{
+                    schoolStr = schoolStr + ", " + array[j];
+                }
             }
-            p3.textContent = schoolStr*/
+            p3.innerHTML = schoolStr;
         }
     },
     error: function(error) {
