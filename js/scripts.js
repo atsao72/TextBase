@@ -8,6 +8,8 @@ function createBook(title) {
   var array = [];
   book.set("title", title);
   book.set("array", array);
+  book.set("course", "");
+  book.set("schools", array);
 
   book.save(null, {
     success: function(book) {
