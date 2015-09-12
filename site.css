@@ -1,55 +1,31 @@
 body {
-    font-family: "Trebuchet MS", Verdana, sans-serif;
+    /*font-family: "Trebuchet MS", Verdana, sans-serif;
     font-size: 16px;
     background-color: #DFDFCF;
     color: #696969;
-    padding: 3px;
+    padding: 3px;*/
+    font-family: niceLooking;
 }
 
-#main {
-    padding: 5px;
-    padding-left:  15px;
-    padding-right: 15px;
-    background-color: #DFDFCF;
-    border-radius: 0 0 5px 5px;
-}
-
-#searchInput {
-    width: 60%;
-    height: 30px;
-    font-size: 28px;
-}
-
-#schoolButton, #bookButton, #submitButton{
-    width: auto;
-    font-size: 25px;
-}
-
-#searchButton{
-    height: inherit;
-    font-size: 25px;
-}
-
-#reviewInput{
-    height: 400px;
-    width: 50%;
-}
-
-#inputHolder{
-    text-align: center;
+p {
+    padding-left: 15px;
+    text-align: left;
+    font-size: 30px;
 }
 
 h1 {
-    font-family: Georgia, serif;
-    text-align: center;
-    color: #00CC7A;
-    font-size: 30px;
+    padding-left: 15px;
+    text-align: left;
+    font-size: 50px;
 }
 
 h2{
-    font-family: Georgia, serif;
     padding-left: 15px;
-    text-align: left;
-    color: #00CC7A;
-    font-size: 30px;
+    text-align: center;
+    font-size: 50px;
+}
+
+@font-face {
+    font-family: niceLooking;
+    src: url("fonts/Kirkuvanpunainenkirsikka.ttf");
 }
