@@ -1,7 +1,7 @@
 body {
     font-family: "Trebuchet MS", Verdana, sans-serif;
     font-size: 16px;
-    background-color: dimgrey;
+    background-color: #DFDFCF;
     color: #696969;
     padding: 3px;
 }
@@ -10,13 +10,34 @@ body {
     padding: 5px;
     padding-left:  15px;
     padding-right: 15px;
-    background-color: #999966;
+    background-color: #DFDFCF;
     border-radius: 0 0 5px 5px;
 }
+
+#searchInput {
+    width: 60%;
+    height: 30px;
+    font-size: 28px;
+}
+
+#schoolButton, #bookButton{
+    width: auto;
+    font-size: 25px;
+}
+
+#searchButton{
+    height: inherit;
+    font-size: 25px;
+}
+
+#inputHolder{
+    text-align: center;
+}
+
 
 h1 {
     font-family: Georgia, serif;
     text-align: center;
-    color: #66FF99;
+    color: #00CC7A;
     font-size: 30px;
 }
