@@ -42,26 +42,10 @@ function getBookId(){
     document.getElementById('bookId').value = bookId;
 }
 
-// function loadReviews() {
-//   var id = parseBookId():
-//
-//   var Book = Parse.Object.extend("Book");
-//   var query = new Parse.Query(Book);
-//   query.get(id, {
-//   success: function(result) {
-//     alert(result.get("title"));
-//   },
-//   error: function(error) {
-//       window.open ('bookList.html','_self',false);
-//       res.send(error.description);
-//   }
-// }
-
 function loadResults(){
-    var searchString = parseBookId();
+    var searchString = parseId();
     searchString = searchString.replace(/%27/g, "'");
     searchString = searchString.replace(/\+/g, " ");
-
     var Book = Parse.Object.extend("Book");
     var query = new Parse.Query(Book);
     query.equalTo("title", searchString);
