@@ -1,8 +1,9 @@
 function createBook(title) {
   var Book = Parse.Object.extend("Book");
   var book = new Book();
-
+  var array = [];
   book.set("title", title);
+  book.set("array", array);
 
   book.save(null, {
     success: function(book) {
@@ -36,6 +37,11 @@ function createCourse(title) {
   });
 }
 
+var bookId;
+function getBookId(){
+    document.getElementById('bookId').value = bookId;
+}
+
 function loadResults(){
     var locate = window.location
     document.searchResult.input.value = locate
@@ -56,11 +62,25 @@ function loadResults(){
     query.equalTo("title", searchString);
     query.find({
     success: function(results) {
-        var list = document.getElementsByTagName("ul")[0];
         for(var i = 0; i < results.length; i++){
-            var li = document.createElement("li");
-            li.appendChild(document.createTextNode(results[i].get("title")));
-            list.appendChild(li);
+            var div = document.getElementById("bookEntry");
+            var h1 = document.getElementById("title");
+            h1.innerHTML = results[i].get("title");
+            bookId = results[i].id;
+            /*var p1 = document.getElementById("author");
+            var authorsStr = "";
+            for(int j = 0; j < results[i].get("authors").length; i++){
+                authorsStr = authorsStr + ", " + results[i].get("authors")[j];
+            }
+            p1.innerHTML = authorsStr;
+            var p2 = document.getElementById("course");
+            p2.textContent = results[i].get("course");
+            var p3 = document.getElementById("college");
+            var schoolStr = "";
+            for(int j = 0; j < results[i].get("schools").length; i++){
+                authorsStr = authorsStr + ", " + results[i].get("schools")[j];
+            }
+            p3.textContent = schoolStr*/
         }
     },
     error: function(error) {
@@ -83,4 +103,68 @@ function search() {
     }
 });
 
+}
+
+function submitReview(){
+    var radios = document.getElementsByName('recommend');
+    var didRecommend = false;
+    for (var i = 0; i < radios.length; i++) {
+        if (radios[0].checked) {
+            didRecommend = true;
+            break;
+        }
+    }
+
+    var dateString;
+    var month = document.getElementById("month");
+    var monthStr = month.options[month.selectedIndex].text;
+    var year = document.getElementById("year");
+    var yearStr = year.options[year.selectedIndex].text;
+    dateString = monthStr + "/" + yearStr;
+
+    var Review = Parse.Object.extend("Review");
+    var review = new Review();
+    review.set("date", dateString);
+    review.set("gpa", parseInt(document.getElementById("gpa").value));
+    review.set("course", document.getElementById("course").value);
+    review.set("review", document.getElementById("reviewText").value);
+    review.set("isNecessary", didRecommend);
+    review.save(null, {
+      success: function(review) {
+          var locate = window.location
+          document.searchResult.input.value = locate
+          var text = document.searchResult.input.value
+
+          function delineate(str)
+          {
+              theleft = str.indexOf("=") + 1;
+              theright = str.length;
+              return(str.substring(theleft, theright));
+          }
+          var bookId = delineate(text);
+
+        var Book = Parse.Object.extend("Book");
+        var query = new Parse.Query(Book);
+        query.get(bookId, {
+          success: function(object) {
+              var array = object.get("reviews");
+              array.push(review.id);
+              object.set("reviews", array);
+              object.save(null, {
+                  success: function(object){
+                      alert('Thank you for reviewing this textbook!');
+                  },
+                  error: function(object,error){
+                  }
+              });
+          },
+
+          error: function(object, error) {
+          }
+        });
+
+      },
+      error: function(review, error) {
+      }
+    });
 }

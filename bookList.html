@@ -13,21 +13,26 @@
 </head>
 
 <body onload="loadResults();">
-
     <form name="searchResult">
         <input type="hidden" name="input">
     </form>
 
-  <h2 id "header">Search Results</h2>
+  <h1 id "header">Search Results</h1>
 
   <ul id="resultList">
   </ul>
 
   <hr>
-  <h1>Title</h1>
-  <p>Author(s)</p>
-  <p>Course</p>
-  <p>College</p>
+  <div id = "bookEntry">
+      <h2 id= "title"></h2>
+      <p id="author">Author(s)</p>
+       <p id="course">Course</p>
+        <p id="college">College</p>
+        <form method="LINK" action="leaveReview.html" id="reviewButton"/>
+            <input id="bookId" type="hidden" name="book"></input>
+           <input id="leaveReview" type="submit" value="Leave a Review" onclick="getBookId();"></input>
+       </form>
+  </div>
   <hr>
 
 </body>

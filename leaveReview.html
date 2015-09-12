@@ -4,6 +4,12 @@
 <head>
   <title>TextBase</title>
   <link href="leaveReview.css" rel="stylesheet">
+  <script src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
+  <script src="js/parse-1.6.0.js"></script>
+  <script type="text/javascript" src="js/scripts.js"></script>
+  <script>
+    Parse.initialize("FDonHTCx7nlLpLrYbp07ff8SO17AwmzgnjcFLksn", "7FNp6JUVqEpr3k2E3JbYH23JY5M8735csrNKiLDf");
+  </script>
   <!-- bootstrap -->
   <!-- Latest compiled and minified CSS -->
 <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">-->
@@ -16,6 +22,9 @@
 </head>
 
 <body>
+    <form name="searchResult">
+        <input type="hidden" name="input">
+    </form>
     <h2>Leave a review for "Intro to Programming Languages"</h2>
     <form>
       <p>In your opinion, is this textbook necessary in order to be successful in the course?</p>
@@ -24,11 +33,11 @@
       <input type="radio" name="recommend" value="no"> no
       <br>
       <br>
-      <input placeholder="Course taken?"></input>
+      <input id="course" placeholder="Course taken?"></input>
       <br>
       <br>
       Month and year taken?
-      <select>
+      <select id="month">
         <option value="1">1</option>
         <option value="2">2</option>
         <option value="3">3</option>
@@ -42,7 +51,7 @@
         <option value="11">11</option>
         <option value="12">12</option>
       </select>
-      <select id="birthyear" name="birthyear">
+      <select id="year" name="birthyear">
         <option value="2007">2015</option>
       	<option value="2006">2014</option>
       	<option value="2005">2013</option>
@@ -84,10 +93,12 @@
      </select>
       <br>
       <br>
-      <input placeholder="Grade earned in class?"></input>
+      <input id="gpa" placeholder="GPA earned in class?"></input>
       <br>
       <br>
-      <textarea placeholder="Notes regarding the textbook?" rows="5" cols="100"></textarea>
+      <textarea id= "reviewText" placeholder="Notes regarding the textbook?" rows="5" cols="100"></textarea>
+      <br>
+      <input id="submit" type="button" onclick="submitReview();" value="Submit"></input>
     </form>
 
     <p>Thanks so much for reviewing! </p>
