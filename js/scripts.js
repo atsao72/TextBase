@@ -63,8 +63,19 @@ function loadResults(){
     query.equalTo("title", searchString);
     query.find({
     success: function(results) {
+        if(results.length == 0){
+            var h1 = document.getElementById("title");
+            h1.innerHTML = "No book with this title was found!";
+            var p1 = document.getElementById("author");
+            p1.innerHTML = "";
+            var p2 = document.getElementById("course");
+            p2.innerHTML = "";
+            var p3 = document.getElementById("college");
+            p3.innerHTML = "";
+            var button = document.getElementById("leaveReview");
+            button.style.visibility = "hidden";
+        }
         for(var i = 0; i < results.length; i++){
-            var div = document.getElementById("bookEntry");
             var h1 = document.getElementById("title");
             h1.innerHTML = results[i].get("title");
             bookId = results[i].id;
