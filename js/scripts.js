@@ -1,8 +1,9 @@
 function createBook(title) {
   var Book = Parse.Object.extend("Book");
   var book = new Book();
-
+  var array = [];
   book.set("title", title);
+  book.set("array", array);
 
   book.save(null, {
     success: function(book) {
@@ -36,6 +37,11 @@ function createCourse(title) {
   });
 }
 
+var bookId;
+function getBookId(){
+    document.getElementById('bookId').value = bookId;
+}
+
 function loadResults(){
     var locate = window.location
     document.searchResult.input.value = locate
@@ -60,6 +66,7 @@ function loadResults(){
             var div = document.getElementById("bookEntry");
             var h1 = document.getElementById("title");
             h1.innerHTML = results[i].get("title");
+            bookId = results[i].id;
             /*var p1 = document.getElementById("author");
             var authorsStr = "";
             for(int j = 0; j < results[i].get("authors").length; i++){
@@ -123,10 +130,41 @@ function submitReview(){
     review.set("review", document.getElementById("reviewText").value);
     review.set("isNecessary", didRecommend);
     review.save(null, {
-      success: function(book) {
-        alert('Thank you for reviewing this textbook!');
+      success: function(review) {
+          var locate = window.location
+          document.searchResult.input.value = locate
+          var text = document.searchResult.input.value
+
+          function delineate(str)
+          {
+              theleft = str.indexOf("=") + 1;
+              theright = str.length;
+              return(str.substring(theleft, theright));
+          }
+          var bookId = delineate(text);
+
+        var Book = Parse.Object.extend("Book");
+        var query = new Parse.Query(Book);
+        query.get(bookId, {
+          success: function(object) {
+              var array = object.get("reviews");
+              array.push(review.id);
+              object.set("reviews", array);
+              object.save(null, {
+                  success: function(object){
+                      alert('Thank you for reviewing this textbook!');
+                  },
+                  error: function(object,error){
+                  }
+              });
+          },
+
+          error: function(object, error) {
+          }
+        });
+
       },
-      error: function(book, error) {
+      error: function(review, error) {
       }
     });
 }
