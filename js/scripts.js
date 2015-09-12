@@ -42,6 +42,18 @@ function getBookId(){
     document.getElementById('bookId').value = bookId;
 }
 
+function loadReviews() {
+  var id = parseId();
+  var Book = Parse.Object.extend("Book");
+  var query = new Parse.Query(Book);
+  query.get(id, {
+  success: function(result) {
+  },
+  error: function(error) {
+  }
+});
+}
+
 function loadResults(){
     var searchString = parseId();
     searchString = searchString.replace(/%27/g, "'");
