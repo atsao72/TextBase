@@ -1,0 +1,28 @@
+body {
+  font-family: malter;
+}
+
+h2 {
+    text-align: center;
+    align: center;
+}
+
+p {
+  padding-left: 20px;
+}
+
+#title {
+  font-size: 25px;
+}
+
+#percentageText {
+  font-size: 15px;
+}
+
+
+
+
+@font-face {
+    font-family: malter;
+    src: url("fonts/malter.otf");
+}
