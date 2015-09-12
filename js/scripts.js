@@ -97,3 +97,36 @@ function search() {
 });
 
 }
+
+function submitReview(){
+    var radios = document.getElementsByName('recommend');
+    var didRecommend = false;
+    for (var i = 0; i < radios.length; i++) {
+        if (radios[0].checked) {
+            didRecommend = true;
+            break;
+        }
+    }
+
+    var dateString;
+    var month = document.getElementById("month");
+    var monthStr = month.options[month.selectedIndex].text;
+    var year = document.getElementById("year");
+    var yearStr = year.options[year.selectedIndex].text;
+    dateString = monthStr + "/" + yearStr;
+
+    var Review = Parse.Object.extend("Review");
+    var review = new Review();
+    review.set("date", dateString);
+    review.set("gpa", parseInt(document.getElementById("gpa").value));
+    review.set("course", document.getElementById("course").value);
+    review.set("review", document.getElementById("reviewText").value);
+    review.set("isNecessary", didRecommend);
+    review.save(null, {
+      success: function(book) {
+        alert('Thank you for reviewing this textbook!');
+      },
+      error: function(book, error) {
+      }
+    });
+}
