@@ -42,18 +42,23 @@ function getBookId(){
     document.getElementById('bookId').value = bookId;
 }
 
-function loadResults(){
-    var locate = window.location
-    document.searchResult.input.value = locate
-    var text = document.searchResult.input.value
+// function loadReviews() {
+//   var id = parseBookId():
+//
+//   var Book = Parse.Object.extend("Book");
+//   var query = new Parse.Query(Book);
+//   query.get(id, {
+//   success: function(result) {
+//     alert(result.get("title"));
+//   },
+//   error: function(error) {
+//       window.open ('bookList.html','_self',false);
+//       res.send(error.description);
+//   }
+// }
 
-    function delineate(str)
-    {
-        theleft = str.indexOf("=") + 1;
-        theright = str.length;
-        return(str.substring(theleft, theright));
-    }
-    searchString = delineate(text);
+function loadResults(){
+    var searchString = parseBookId();
     searchString = searchString.replace(/%27/g, "'");
     searchString = searchString.replace(/\+/g, " ");
 
@@ -131,17 +136,7 @@ function submitReview(){
     review.set("isNecessary", didRecommend);
     review.save(null, {
       success: function(review) {
-          var locate = window.location
-          document.searchResult.input.value = locate
-          var text = document.searchResult.input.value
-
-          function delineate(str)
-          {
-              theleft = str.indexOf("=") + 1;
-              theright = str.length;
-              return(str.substring(theleft, theright));
-          }
-          var bookId = delineate(text);
+        var bookId = parseBookId();
 
         var Book = Parse.Object.extend("Book");
         var query = new Parse.Query(Book);
@@ -167,4 +162,25 @@ function submitReview(){
       error: function(review, error) {
       }
     });
+}
+
+function updateBookId() {
+  var bookId = parseId();
+  document.getElementById('bookId1').value = bookId;
+
+}
+
+function parseId() {
+  var locate = window.location;
+  document.searchResult.input.value = locate;
+  var text = document.searchResult.input.value;
+
+  function delineate(str)
+  {
+      theleft = str.indexOf("=") + 1;
+      theright = str.length;
+      return(str.substring(theleft, theright));
+  }
+  var bookId = delineate(text);
+  return bookId;
 }
