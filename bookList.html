@@ -4,11 +4,24 @@
 <head>
   <title>TextBase</title>
   <link href="site.css" rel="stylesheet">
+  <script src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
+  <script src="js/parse-1.6.0.js"></script>
+  <script type="text/javascript" src="js/scripts.js"></script>
+  <script>
+    Parse.initialize("FDonHTCx7nlLpLrYbp07ff8SO17AwmzgnjcFLksn", "7FNp6JUVqEpr3k2E3JbYH23JY5M8735csrNKiLDf");
+  </script>
 </head>
 
-<body>
+<body onload="loadResults();">
 
-  <h2>Search Results</h2>
+    <form name="searchResult">
+    <input type="hidden" name="input">
+    </FORM>
+
+  <h2 id "header">Search Results</h2>
+
+  <ul id="resultList">
+  </ul>
 
 </body>
 

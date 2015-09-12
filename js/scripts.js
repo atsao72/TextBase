@@ -35,3 +35,71 @@ function createCourse(title) {
     }
   });
 }
+
+function loadResults(){
+    var locate = window.location
+document.searchResult.input.value = locate
+var text = document.searchResult.input.value
+
+function delineate(str)
+{
+theleft = str.indexOf("=") + 1;
+theright = str.length;
+return(str.substring(theleft, theright));
+}
+searchString = delineate(text);
+searchString = searchString.replace(/%27/g, "'");
+searchString = searchString.replace(/\+/g, " ");
+
+    var Book = Parse.Object.extend("Book");
+    var query = new Parse.Query(Book);
+    query.equalTo("title", searchString);
+    query.find({
+    success: function(results) {
+        var list = document.getElementsByTagName("ul")[0];
+        for(var i = 0; i < results.length; i++){
+            var li = document.createElement("li");
+            li.appendChild(document.createTextNode(results[i].get("title")));
+            list.appendChild(li);
+        }
+    },
+    error: function(error) {
+alert("Failed");
+        res.send(error.description);
+    }
+});
+}
+
+function openWindow(){
+    window.open("bookList.html", "_self", false);
+}
+
+function search() {
+    var Book = Parse.Object.extend("Book");
+    var query = new Parse.Query(Book);
+    query.equalTo("title", document.getElementById("searchInput").value);
+    query.find({
+    success: function(results) {
+    },
+    error: function(error) {
+        window.open ('bookList.html','_self',false);
+        res.send(error.description);
+    }
+});
+
+function makeList(array){
+    var list = document.createElement('ul');
+
+    for(var i = 0; i < array.length; i++) {
+        // Create the list item:
+        var item = document.createElement('li');
+        // Set its contents:
+        item.appendChild(document.createTextNode(array[i].get("title")));
+        // Add it to the list:
+        list.appendChild(item);
+    }
+
+    // Finally, return the constructed list:
+    return list;
+}
+}
