@@ -246,7 +246,7 @@ function submitReview(){
     var Review = Parse.Object.extend("Review");
     var review = new Review();
     review.set("date", dateString);
-    review.set("gpa", parseInt(document.getElementById("gpa").value));
+    review.set("grade", document.getElementById("gpa").value);
     review.set("course", document.getElementById("course").value);
     review.set("review", document.getElementById("reviewText").value);
     review.set("isNecessary", didRecommend);
