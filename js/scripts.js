@@ -2,6 +2,10 @@ function goHome(){
     window.open("index.html", "_self", false);
 }
 
+function goAddBook(){
+    window.open("addBook.html", "_self", false);
+}
+
 var reviewObject;
 function updateReviewTitle(){
     bookId = parseId();
@@ -68,8 +72,9 @@ function createCourse(title) {
 }
 
 var bookId;
-function getBookId(){
-    document.getElementById('bookId').value = bookId;
+function readReviews(){
+    var url = "review.html?book=" + bookId;
+    window.open(url, "_self", false);
 }
 
 function loadReviews() {
@@ -87,7 +92,7 @@ function loadReviews() {
 function loadResults(){
     var searchString = parseId();
     searchString = searchString.replace(/%27/g, "'");
-    searchString = searchString.replace(/\+/g, " ");
+    searchString = searchString.replace(/%20/g, " ");
     var Book = Parse.Object.extend("Book");
     var query = new Parse.Query(Book);
     query.equalTo("title", searchString);
@@ -103,7 +108,8 @@ function loadResults(){
             var p3 = document.getElementById("college");
             p3.innerHTML = "";
             var button = document.getElementById("leaveReview");
-            button.style.visibility = "hidden";
+            button.value = "Add New Textbook";
+            button.onclick = function(){goAddBook();}
         }
         for(var i = 0; i < results.length; i++){
             var h1 = document.getElementById("title");
@@ -145,18 +151,9 @@ alert("Failed");
 }
 
 function search() {
-    var Book = Parse.Object.extend("Book");
-    var query = new Parse.Query(Book);
-    query.equalTo("title", document.getElementById("searchBar").value);
-    query.find({
-    success: function(results) {
-    },
-    error: function(error) {
-        window.open ('bookList.html','_self',false);
-        res.send(error.description);
-    }
-});
-
+    var searchString = document.getElementById('searchBar').value;
+    var url = "bookList.html?input=" + searchString;
+    window.open(url, "_self", false);
 }
 
 function submitReview(){
@@ -202,10 +199,10 @@ function submitReview(){
     });
 }
 
-function updateBookId() {
+function goReview() {
   var bookId = parseId();
-  document.getElementById('bookId1').value = bookId;
-
+  var url = "leaveReview.html?book=" + bookId;
+  window.open(url, "_self", false);
 }
 
 function parseId() {
