@@ -257,7 +257,7 @@ function submitReview(){
         reviewObject.set("reviews", array);
         reviewObject.save(null, {
             success: function(object){
-                window.open("index.html", "_self", false);
+                goBackToReview();
             },
             error: function(object,error){
             }
@@ -268,7 +268,7 @@ function submitReview(){
     });
 }
 
-function cancelReview(){
+function goBackToReview(){
     var url = "review.html?book=" + reviewObject.id;
     window.open(url, "_self", false);
 }
