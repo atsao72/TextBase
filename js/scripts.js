@@ -78,10 +78,10 @@ function readReviews(){
 }
 
 function downloadBook() {
-  var id = parseId();
+  bookId = parseId();
   var Book = Parse.Object.extend("Book");
   var query = new Parse.Query(Book);
-  query.get(id, {
+  query.get(bookId, {
     success: displayTextbookData,
     error: function(error) {
       alert(error);
@@ -89,52 +89,18 @@ function downloadBook() {
   });
 }
 
+numRec = 0;
 function displayTextbookData(result) {
   var title = result.get("title"); // string
   var authors = result.get("authors"); // array
   var course = result.get("course"); // string
   var schools = result.get("schools"); // array
   var reviewsIds = result.get("reviews"); // array
-  var element = document.getElementById("header");
-  var titlediv = document.createElement("div");
-  var node = document.createTextNode(title);
-  titlediv.appendChild(node);
-  element.appendChild(titlediv);
-  var progress = document.createElement("progress");
-  progress.setAttribute("value", "22");
-  progress.setAttribute("max", "100");
-  element.appendChild(progress);
-  var br = document.createElement("br");
-  element.appendChild(br);
-  var percText = document.createElement("div");
-  var node1 = document.createTextNode("of reviewers said the book was necessary for success in the class");
-  element.appendChild(node1);
-/**
-<form method='LINK' action='leaveReview.html' id='reviewButton'/>
-    <input id='bookId1' type='hidden' name='book'></input>
-   <input id='leaveReview' type='submit' value='Review this textbook!' onclick='updateBookId();'></input>
-</form>
-*/
-  var button = document.createElement("form");
-  button.method = "LINK";
-  button.action = "leaveReview.html";
-  button.id = "reviewButton";
-  var input1 = document.createElement("input");
-  input1.id = "bookId1";
-  input1.type = "hidden";
-  input1.name = "book";
-  var input2 = document.createElement("input");
-  input2.id = "leaveReview";
-  input2.type = "submit";
-  input2.value = "Review this textbook!";
-  input2.onclick = "updateBookId();";
-  button.appendChild(input1);
-  button.appendChild(input2);
-  element.appendChild(button);
-
+  document.getElementById("title").innerHTML = title;
 
   var Review = Parse.Object.extend("Review");
   var query = new Parse.Query(Review);
+  var numTotal = reviewsIds.length;
   for (var i = 0; i < reviewsIds.length; i++) {
     query.get(reviewsIds[i], {
       success: showReview,
@@ -143,12 +109,22 @@ function displayTextbookData(result) {
       }
     });
   }
+  setTimeout(function(){
+    document.getElementById("percentageText").innerHTML = numRec + " out of " + numTotal + " reviewers said the book was necessary for success in the class";
+    document.getElementById("prog").value = numRec;
+    document.getElementById("prog").max = numTotal;
+    numRec = 0;
+  }, 2500);
+
+
+  // numRec = 0;
 }
 
 function showReview(review) {
   var element = document.getElementById("body");
   var isNess = review.get("isNecessary");
   if (isNess) {
+    numRec = numRec + 1;
     var node = document.createTextNode("Would recommend buying the book");
     var para = document.createElement("p");
     para.appendChild(node);

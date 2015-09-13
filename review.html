@@ -1,59 +1,38 @@
 <!DOCTYPE html>
 <html>
 
-<head>
-  <title>TextBase</title>
-  <link href="review.css" rel="stylesheet">
-  <script src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
-  <script src="js/parse-1.6.0.js"></script>
-  <script type="text/javascript" src="js/scripts.js"></script>
-  <script>
-    Parse.initialize("FDonHTCx7nlLpLrYbp07ff8SO17AwmzgnjcFLksn", "7FNp6JUVqEpr3k2E3JbYH23JY5M8735csrNKiLDf");
-  </script>
-</head>
+  <head>
+    <title>TextBase</title>
+    <link href="review.css" rel="stylesheet">
+    <script src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
+    <script src="js/parse-1.6.0.js"></script>
+    <script type="text/javascript" src="js/scripts.js"></script>
+    <script>
+      Parse.initialize("FDonHTCx7nlLpLrYbp07ff8SO17AwmzgnjcFLksn", "7FNp6JUVqEpr3k2E3JbYH23JY5M8735csrNKiLDf");
+    </script>
+  </head>
 
-<body id="body" onload="downloadBook();">
-  <form name="searchResult">
-      <input type="hidden" name="input">
-  </form>
+  <body id="body" onload="downloadBook();">
+    <form name="searchResult">
+        <input type="hidden" name="input">
+    </form>
 
+    <h2>
+      <p id="title">
+        Title
+      </p>
+      <input type="image" id="searchIcon" src="searchIcon.png" onclick="goHome();"></input>
 
-  <h2>
-    <div id="title">
-      Title
-    </div>
-    <input type="image" id="searchIcon" src="searchIcon.png" onclick="goHome();"></input>
+      <progress id="prog" value="0" max="100"></progress>
+      <br>
+      <p id="percentageText">
+      22% of reviewers said the book was necessary for success in the class
+      </p>
+         <input id="leaveReview" type="button" value="Review this textbook!" onclick="goReview();"></input>
+    </h2>
 
-    <progress value="22" max="100"></progress>
-    <br>
-    <div id="percentageText">
-    22% of reviewers said the book was necessary for success in the class
-    </div>
-       <input id="leaveReview" type="button" value="Review this textbook!" onclick="goReview();"></input>
-  </h2>
+    <h2 id="header"></h2>
 
-  <h2 id="header"></h2>
-
-  <!-- <p>
-    <font color="green"><b>Would recommend buying</b></font>
-    June 4th, 2015
-    <br>
-    <br>
-    I absolutely LOVED this textbook! Professor assigns homework problems from
-    <br>the book, definitely a must have! I also LOVE this website!
-    <hr>
-  </p>
-  <p>
-    <font color="red"><b>Would NOT recommend buying</b></font>
-    October 4th, 2009
-    <br>
-    <br>
-    Textbook wasn't useful at all! Boring and hard to understand!
-    <br> I'm using exclamation marks because periods don't work
-    <br> in this font!
-    <hr>
-  </p> -->
-
-</body>
+  </body>
 
 </html>

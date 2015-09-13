@@ -1,5 +1,5 @@
 body {
-  font-family: malter;
+  font-family: hack;
 }
 
 h2 {
@@ -28,6 +28,6 @@ p {
 
 
 @font-face {
-    font-family: malter;
-    src: url("fonts/malter.otf");
+    font-family: hack;
+    src: url("fonts/Hack-Regular.ttf");
 }
