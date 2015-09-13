@@ -1,5 +1,6 @@
 body {
     font-family: niceLooking;
+    background-image: url("textbooks.jpg");
 }
 
 p {
@@ -25,6 +26,12 @@ h2{
     float: right;
     width: 70px;
     height: 70px;
+}
+
+#readReviews{
+    margin-left: 15px;
+    font-size: 25px;
+    display: inline-block;
 }
 
 @font-face {
