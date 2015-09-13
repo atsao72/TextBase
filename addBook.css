@@ -1,0 +1,39 @@
+body {
+    font-family: niceLooking;
+}
+
+.center {
+    text-align: center;
+    align: center;
+    font-family: niceLooking;
+}
+
+h1 {
+    padding-left: 15px;
+    text-align: center;
+    align:center;
+    font-size: 50px;
+    display: inline-block;
+}
+
+p {
+    text-align: center;
+    font-size: 30px;
+    margin:15px;
+}
+
+input, button {
+    font-size: inherit;
+    padding: 0.3em
+}
+
+#searchIcon{
+    float: right;
+    width: 70px;
+    height: 70px;
+}
+
+@font-face {
+    font-family: niceLooking;
+    src: url("fonts/Kirkuvanpunainenkirsikka.ttf");
+}

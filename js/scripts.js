@@ -2,26 +2,33 @@ function goHome(){
     window.open("index.html", "_self", false);
 }
 
-function createBook(title) {
+function addBook(){
+    var title = document.getElementById('bookTitle').value;
+    var authorArray = [document.getElementById('author').value];
+    var course = document.getElementById('course').value;
+    var schoolArray = [document.getElementById('school').value];
+    createBook(title, authorArray, course, schoolArray);
+}
+
+function createBook(title, authors, course, schools) {
   var Book = Parse.Object.extend("Book");
   var book = new Book();
-  var array = [];
   book.set("title", title);
-  book.set("array", array);
-  book.set("course", "");
-  book.set("schools", array);
-
+  book.set("authors", authors);
+  book.set("course", course);
+  book.set("schools", schools);
+  book.set("reviews", []);
   book.save(null, {
     success: function(book) {
-      // Execute any logic that should take place after the object is saved.
-      alert('New object created with objectId: ' + book.id);
+      var url = "review.html?book=" + book.id;
+      window.open(url, "_self", false);
     },
     error: function(book, error) {
       // Execute any logic that should take place if the save fails.
       // error is a Parse.Error with an error code and message.
       alert('Failed to create new object, with error code: ' + error.message);
     }
-  });
+});
 }
 
 function createCourse(title) {
