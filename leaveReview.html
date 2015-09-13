@@ -10,15 +10,6 @@
   <script>
     Parse.initialize("FDonHTCx7nlLpLrYbp07ff8SO17AwmzgnjcFLksn", "7FNp6JUVqEpr3k2E3JbYH23JY5M8735csrNKiLDf");
   </script>
-  <!-- bootstrap -->
-  <!-- Latest compiled and minified CSS -->
-<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">-->
-
-<!-- Optional theme -->
-<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css"> -->
-
-<!-- Latest compiled and minified JavaScript -->
-<!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script> -->
 </head>
 
 <body onload="updateReviewTitle();">
@@ -29,7 +20,6 @@
     <form>
       <p>In your opinion, is this textbook necessary in order to be successful in the course?</p>
       <input type="radio" name="recommend" value="yes"> yes
-      <br>
       <input type="radio" name="recommend" value="no"> no
       <br>
       <br>
@@ -93,12 +83,13 @@
      </select>
       <br>
       <br>
-      <input id="gpa" placeholder="GPA earned in class?"></input>
+      <input id="gpa" placeholder="Grade earned? (i.e. 3.2)"></input>
       <br>
       <br>
       <textarea id= "reviewText" placeholder="Notes regarding the textbook?" rows="5" cols="100"></textarea>
       <br>
       <input id="submit" type="button" onclick="submitReview();" value="Submit"></input>
+      <input id="cancelButton" type="button" onclick="cancelReview();" value="Cancel"></input>
     </form>
 
     <p>Thanks so much for reviewing! </p>

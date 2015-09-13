@@ -143,11 +143,16 @@ function showReview(review) {
   var datePar = document.createElement("p");
   datePar.appendChild(ital);
   datePar.style.fontSize = "12pt";
+  var gpaHolder = document.createElement('p');
+  var gpaText = document.createTextNode("Grade received: " + review.get("grade"));
+  gpaHolder.appendChild(gpaText);
+  gpaHolder.style.fontSize = "12pt";
   var description = document.createElement("p");
   var desText = document.createTextNode(review.get("review"));
   description.appendChild(desText);
   element.appendChild(rec);
   element.appendChild(datePar);
+  element.appendChild(gpaHolder);
   element.appendChild(description);
   var line = document.createElement("hr");
   element.appendChild(line);
@@ -172,7 +177,7 @@ function loadResults(){
             p2.innerHTML = "";
             var p3 = document.getElementById("college");
             p3.innerHTML = "";
-            var button = document.getElementById("leaveReview");
+            var button = document.getElementById("readReviews");
             button.value = "Add New Textbook";
             button.onclick = function(){goAddBook();}
         }
@@ -262,6 +267,11 @@ function submitReview(){
       error: function(review, error) {
       }
     });
+}
+
+function cancelReview(){
+    var url = "review.html?book=" + reviewObject.id;
+    window.open(url, "_self", false);
 }
 
 function goReview() {
