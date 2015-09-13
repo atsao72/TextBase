@@ -177,7 +177,7 @@ function loadResults(){
             p2.innerHTML = "";
             var p3 = document.getElementById("college");
             p3.innerHTML = "";
-            var button = document.getElementById("leaveReview");
+            var button = document.getElementById("readReviews");
             button.value = "Add New Textbook";
             button.onclick = function(){goAddBook();}
         }
