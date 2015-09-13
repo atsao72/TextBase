@@ -12,10 +12,10 @@ body {
 
 h1 {
     padding-left: 15px;
+    padding-right: 0px;
     text-align: center;
     align:center;
     font-size: 50px;
-    display: inline-block;
 }
 
 p {
@@ -33,6 +33,7 @@ input, button {
     float: right;
     width: 70px;
     height: 70px;
+    margin-bottom: 0px;
 }
 
 @font-face {
