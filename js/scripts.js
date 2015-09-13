@@ -96,7 +96,7 @@ function displayTextbookData(result) {
   var course = result.get("course"); // string
   var schools = result.get("schools"); // array
   var reviewsIds = result.get("reviews"); // array
-  document.getElementById("title").innerHTML = title;
+  document.getElementById("title").innerHTML = '"' + title + '"';
 
   var Review = Parse.Object.extend("Review");
   var query = new Parse.Query(Review);
@@ -114,7 +114,7 @@ function displayTextbookData(result) {
     document.getElementById("prog").value = numRec;
     document.getElementById("prog").max = numTotal;
     numRec = 0;
-  }, 2500);
+  }, 1000);
 
 
   // numRec = 0;
@@ -123,40 +123,40 @@ function displayTextbookData(result) {
 function showReview(review) {
   var element = document.getElementById("body");
   var isNess = review.get("isNecessary");
+  var node;
+  var rec = document.createElement("div");
   if (isNess) {
+    node = document.createTextNode("Would recommend buying the book");
+    rec.style.color = "green";
     numRec = numRec + 1;
-    var node = document.createTextNode("Would recommend buying the book");
-    var para = document.createElement("p");
-    para.appendChild(node);
-    para.style.color = "green";
-    var date = document.createTextNode(review.get("date"));
-    var datePar = document.createElement("p");
-    datePar.appendChild(date);
-    var description = document.createElement("p");
-    var desText = document.createTextNode(review.get("review"));
-    description.appendChild(desText);
-    element.appendChild(para);
-    element.appendChild(datePar);
-    element.appendChild(description);
-    var line = document.createElement("hr");
-    element.appendChild(line);
   } else {
-    var node = document.createTextNode("Would NOT recommend buying the book");
-    var para = document.createElement("p");
-    para.appendChild(node);
-    para.style.color = "red";
-    var date = document.createTextNode(review.get("date"));
-    var datePar = document.createElement("p");
-    datePar.appendChild(date);
-    var description = document.createElement("p");
-    var desText = document.createTextNode(review.get("review"));
-    description.appendChild(desText);
-    element.appendChild(para);
-    element.appendChild(datePar);
-    element.appendChild(description);
-    var line = document.createElement("hr");
-    element.appendChild(line);
+    node = document.createTextNode("Would NOT recommend buying the book");
+    rec.style.color = "red";
   }
+  rec.appendChild(node);
+  var dateString = review.get("date");
+  var year = dateString.substring(dateString.length - 4, dateString.length);
+  var month = dateString.split("/")[0];
+  var date = document.createTextNode(numToMonth(Number(month)) + " " + year);
+  var ital = document.createElement("i");
+  ital.appendChild(date);
+  var datePar = document.createElement("p");
+  datePar.appendChild(ital);
+  datePar.style.fontSize = "12pt";
+  var gpaHolder = document.createElement('p');
+  var gpaText = document.createTextNode("Grade received: " + review.get("grade"));
+  gpaHolder.appendChild(gpaText);
+  gpaHolder.style.fontSize = "12pt";
+  var description = document.createElement("p");
+  var desText = document.createTextNode(review.get("review"));
+  description.appendChild(desText);
+  element.appendChild(rec);
+  element.appendChild(datePar);
+  element.appendChild(gpaHolder);
+  element.appendChild(description);
+  var line = document.createElement("hr");
+  element.appendChild(line);
+
 }
 
 function loadResults(){
@@ -293,4 +293,47 @@ function parseId() {
   }
   var bookId = delineate(text);
   return bookId;
+}
+
+function numToMonth(num) {
+  switch (num) {
+    case 1:
+      return "January";
+      break;
+    case 2:
+      return "February";
+      break;
+    case 3:
+      return "March";
+      break;
+    case 4:
+      return "April";
+      break;
+    case 5:
+      return "May";
+      break;
+    case 6:
+      return "June";
+      break;
+    case 7:
+      return "July";
+      break;
+    case 8:
+      return "August";
+      break;
+    case 9:
+      return "September";
+      break;
+    case 10:
+      return "October";
+      break;
+    case 11:
+      return "November";
+      break;
+    case 12:
+      return "December";
+      break;
+    default:
+      return "Error getting month";
+  }
 }

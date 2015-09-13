@@ -2,9 +2,10 @@ body {
   font-family: niceLooking;
   background-image: url("textbooks.jpg");
   background-size: cover;
+  font-size: 25px;
 }
 
-h2 {
+#heading {
     text-align: center;
     align: center;
 }
@@ -14,7 +15,7 @@ p {
 }
 
 #title {
-  font-size: 25px;
+  font-size: 30pt;
 }
 
 #percentageText {
@@ -25,6 +26,7 @@ p {
     float: right;
     width: 70px;
     height: 70px;
+    z-index: -1;
 }
 
 input[type=button]{
