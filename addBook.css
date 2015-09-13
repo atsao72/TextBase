@@ -2,23 +2,29 @@ body {
     font-family: niceLooking;
 }
 
-p {
-    padding-left: 15px;
-    text-align: left;
-    font-size: 30px;
+.center {
+    text-align: center;
+    align: center;
+    font-family: niceLooking;
 }
 
 h1 {
     padding-left: 15px;
-    text-align: left;
+    text-align: center;
+    align:center;
     font-size: 50px;
     display: inline-block;
 }
 
-h2{
-    padding-left: 15px;
+p {
     text-align: center;
-    font-size: 50px;
+    font-size: 30px;
+    margin:15px;
+}
+
+input, button {
+    font-size: inherit;
+    padding: 0.3em
 }
 
 #searchIcon{

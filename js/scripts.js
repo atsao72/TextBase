@@ -1,21 +1,55 @@
-function createBook(title) {
+function goHome(){
+    window.open("index.html", "_self", false);
+}
+
+function goAddBook(){
+    window.open("addBook.html", "_self", false);
+}
+
+var reviewObject;
+function updateReviewTitle(){
+    bookId = parseId();
+    var Book = Parse.Object.extend("Book");
+    var query = new Parse.Query(Book);
+    query.get(bookId, {
+      success: function(object) {
+          reviewObject = object;
+          var bookTitle = object.get("title");
+          var title = document.getElementById('leaveReviewTitle').innerHTML;
+          document.getElementById('leaveReviewTitle').innerHTML = title + "\"" + bookTitle + "\"";
+      },
+      error: function(object, error) {
+      }
+    });
+}
+
+function addBook(){
+    var title = document.getElementById('bookTitle').value;
+    var authorArray = [document.getElementById('author').value];
+    var course = document.getElementById('course').value;
+    var schoolArray = [document.getElementById('school').value];
+    createBook(title, authorArray, course, schoolArray);
+}
+
+function createBook(title, authors, course, schools) {
   var Book = Parse.Object.extend("Book");
   var book = new Book();
-  var array = [];
   book.set("title", title);
-  book.set("array", array);
-
+  book.set("authors", authors);
+  book.set("course", course);
+  book.set("schools", schools);
+  book.set("reviews", []);
   book.save(null, {
     success: function(book) {
-      // Execute any logic that should take place after the object is saved.
-      alert('New object created with objectId: ' + book.id);
+      var url = "review.html?book=" + book.id;
+      window.open(url, "_self", false);
     },
     error: function(book, error) {
       // Execute any logic that should take place if the save fails.
       // error is a Parse.Error with an error code and message.
       alert('Failed to create new object, with error code: ' + error.message);
     }
-  });
+});
 }
 
 function createCourse(title) {
@@ -38,8 +72,9 @@ function createCourse(title) {
 }
 
 var bookId;
-function getBookId(){
-    document.getElementById('bookId').value = bookId;
+function readReviews(){
+    var url = "review.html?book=" + bookId;
+    window.open(url, "_self", false);
 }
 
 function downloadBook() {
@@ -151,31 +186,55 @@ function showReview(review) {
 function loadResults(){
     var searchString = parseId();
     searchString = searchString.replace(/%27/g, "'");
-    searchString = searchString.replace(/\+/g, " ");
+    searchString = searchString.replace(/%20/g, " ");
     var Book = Parse.Object.extend("Book");
     var query = new Parse.Query(Book);
     query.equalTo("title", searchString);
     query.find({
     success: function(results) {
+        if(results.length == 0){
+            var h1 = document.getElementById("title");
+            h1.innerHTML = "No book with this title was found!";
+            var p1 = document.getElementById("author");
+            p1.innerHTML = "";
+            var p2 = document.getElementById("course");
+            p2.innerHTML = "";
+            var p3 = document.getElementById("college");
+            p3.innerHTML = "";
+            var button = document.getElementById("leaveReview");
+            button.value = "Add New Textbook";
+            button.onclick = function(){goAddBook();}
+        }
         for(var i = 0; i < results.length; i++){
-            var div = document.getElementById("bookEntry");
             var h1 = document.getElementById("title");
             h1.innerHTML = results[i].get("title");
             bookId = results[i].id;
-            /*var p1 = document.getElementById("author");
-            var authorsStr = "";
-            for(int j = 0; j < results[i].get("authors").length; i++){
-                authorsStr = authorsStr + ", " + results[i].get("authors")[j];
+            var p1 = document.getElementById("author");
+            var authorsStr = p1.innerHTML + ": ";
+            var array = results[i].get("authors");
+            for(var j = 0; j < array.length; j++){
+                if(j == 0){
+                    authorsStr = authorsStr + array[j];
+                }
+                else{
+                    authorsStr = authorsStr + ", " + array[j];
+                }
             }
             p1.innerHTML = authorsStr;
             var p2 = document.getElementById("course");
-            p2.textContent = results[i].get("course");
+            p2.innerHTML = p2.innerHTML + ": " + results[i].get("course");
             var p3 = document.getElementById("college");
-            var schoolStr = "";
-            for(int j = 0; j < results[i].get("schools").length; i++){
-                authorsStr = authorsStr + ", " + results[i].get("schools")[j];
+            var schoolStr = p3.innerHTML + ": ";
+            array = results[i].get("schools");
+            for(var j = 0; j < array.length; j++){
+                if(j==0){
+                    schoolStr = schoolStr + array[j];
+                }
+                else{
+                    schoolStr = schoolStr + ", " + array[j];
+                }
             }
-            p3.textContent = schoolStr*/
+            p3.innerHTML = schoolStr;
         }
     },
     error: function(error) {
@@ -186,18 +245,9 @@ alert("Failed");
 }
 
 function search() {
-    var Book = Parse.Object.extend("Book");
-    var query = new Parse.Query(Book);
-    query.equalTo("title", document.getElementById("searchBar").value);
-    query.find({
-    success: function(results) {
-    },
-    error: function(error) {
-        window.open ('bookList.html','_self',false);
-        res.send(error.description);
-    }
-});
-
+    var searchString = document.getElementById('searchBar').value;
+    var url = "bookList.html?input=" + searchString;
+    window.open(url, "_self", false);
 }
 
 function submitReview(){
@@ -226,38 +276,27 @@ function submitReview(){
     review.set("isNecessary", didRecommend);
     review.save(null, {
       success: function(review) {
-        var bookId = parseBookId();
-
-        var Book = Parse.Object.extend("Book");
-        var query = new Parse.Query(Book);
-        query.get(bookId, {
-          success: function(object) {
-              var array = object.get("reviews");
-              array.push(review.id);
-              object.set("reviews", array);
-              object.save(null, {
-                  success: function(object){
-                      alert('Thank you for reviewing this textbook!');
-                  },
-                  error: function(object,error){
-                  }
-              });
-          },
-
-          error: function(object, error) {
-          }
+        var array = reviewObject.get("reviews");
+        array.push(review.id);
+        reviewObject.set("reviews", array);
+        reviewObject.save(null, {
+            success: function(object){
+                alert('Thank you for reviewing this textbook!');
+                window.open("index.html", "_self", false);
+            },
+            error: function(object,error){
+            }
         });
-
       },
       error: function(review, error) {
       }
     });
 }
 
-function updateBookId() {
+function goReview() {
   var bookId = parseId();
-  document.getElementById('bookId1').value = bookId;
-
+  var url = "leaveReview.html?book=" + bookId;
+  window.open(url, "_self", false);
 }
 
 function parseId() {
