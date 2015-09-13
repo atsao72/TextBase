@@ -269,6 +269,11 @@ function submitReview(){
     });
 }
 
+function cancelReview(){
+    var url = "review.html?book=" + reviewObject.id;
+    window.open(url, "_self", false);
+}
+
 function goReview() {
   var bookId = parseId();
   var url = "leaveReview.html?book=" + bookId;
