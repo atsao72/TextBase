@@ -1,8 +1,9 @@
 body {
   font-family: hack;
+  font-size: 18pt;
 }
 
-h2 {
+#heading {
     text-align: center;
     align: center;
 }
@@ -23,11 +24,12 @@ p {
     float: right;
     width: 70px;
     height: 70px;
+    z-index: -1;
 }
 
 
 
 @font-face {
     font-family: hack;
-    src: url("fonts/Hack-Regular.ttf");
+    src: url("fonts/Kirkuvanpunainenkirsikka.ttf");
 }
