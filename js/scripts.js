@@ -257,7 +257,6 @@ function submitReview(){
         reviewObject.set("reviews", array);
         reviewObject.save(null, {
             success: function(object){
-                alert('Thank you for reviewing this textbook!');
                 window.open("index.html", "_self", false);
             },
             error: function(object,error){
