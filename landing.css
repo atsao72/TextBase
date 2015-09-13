@@ -1,5 +1,6 @@
 body {
   background-image: url("textbooks.jpg");
+  background-size: cover;
 }
 
 .center {

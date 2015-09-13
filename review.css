@@ -1,6 +1,7 @@
 body {
   font-family: hack;
   background-image: url("textbooks.jpg");
+  background-size: cover;
 }
 
 h2 {
