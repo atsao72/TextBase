@@ -26,7 +26,11 @@ p {
     height: 70px;
 }
 
-
+#leaveReview{
+    margin-left: 15px;
+    font-size: 25px;
+    display: inline-block;
+}
 
 @font-face {
     font-family: hack;
