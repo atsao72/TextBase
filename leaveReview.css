@@ -1,13 +1,28 @@
 body {
   padding-left: 10px;
-  font-family: malter;
+  font-family: niceLooking;
   line-height: 1.5em;
-  font-size: 14pt;
+  font-size: 18pt;
   background-image: url("textbooks.jpg");
   background-size: cover;
 }
 
+p{
+    padding: 0px;
+}
+
+input{
+    padding-bottom: 0px;
+}
+
+#submit, #cancelButton{
+    font-family: niceLooking;
+    margin-left: 15px;
+    font-size: 25px;
+    display: inline-block;
+}
+
 @font-face {
-    font-family: malter;
-    src: url("fonts/malter.otf");
+    font-family: niceLooking;
+    src: url("fonts/Kirkuvanpunainenkirsikka.ttf");
 }

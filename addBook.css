@@ -36,6 +36,12 @@ input, button {
     margin-bottom: 0px;
 }
 
+#addBook{
+    margin-left: 15px;
+    font-size: 25px;
+    display: inline-block;
+}
+
 @font-face {
     font-family: niceLooking;
     src: url("fonts/Kirkuvanpunainenkirsikka.ttf");
