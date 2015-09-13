@@ -15,11 +15,20 @@ input{
     padding-bottom: 0px;
 }
 
-#submit, #cancelButton{
+input[type=button]{
+    display:       inline-block;
+    padding:       7px 10px;
+    background:    #374653 url('http://dabuttonfactory.com/button.png?w=1&h=44&bgt=gradient&bgc=5e87ac&ebgc=374653') repeat-x;
+    background:    -moz-linear-gradient(#5e87ac, #374653);
+    background:    -o-linear-gradient(#5e87ac, #374653);
+    background:    -webkit-linear-gradient(#5e87ac, #374653);
+    background:    linear-gradient(#5e87ac, #374653);
+    border-radius: 5px;
+    color:         #fff;
     font-family: niceLooking;
-    margin-left: 15px;
     font-size: 25px;
-    display: inline-block;
+    text-align:    center;
+    text-shadow:   1px 1px 0 #000;
 }
 
 @font-face {

@@ -24,7 +24,7 @@ fieldset {
   border: 0;
 }
 
-input, button {
+input{
     font-size: inherit;
     padding: .5em;
     margin: 0.1em 0.2em;
@@ -32,6 +32,22 @@ input, button {
     -moz-box-sizing: content-box; /* or `border-box` */
     -webkit-box-sizing: content-box;
     box-sizing: content-box;
+}
+
+input[type=button]{
+    display:       inline-block;
+    padding:       7px 10px;
+    background:    #374653 url('http://dabuttonfactory.com/button.png?w=1&h=44&bgt=gradient&bgc=5e87ac&ebgc=374653') repeat-x;
+    background:    -moz-linear-gradient(#5e87ac, #374653);
+    background:    -o-linear-gradient(#5e87ac, #374653);
+    background:    -webkit-linear-gradient(#5e87ac, #374653);
+    background:    linear-gradient(#5e87ac, #374653);
+    border-radius: 5px;
+    color:         #fff;
+    font-family: niceLooking;
+    font-size: 20px;
+    text-align:    center;
+    text-shadow:   1px 1px 0 #000;
 }
 
 
