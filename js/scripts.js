@@ -2,6 +2,23 @@ function goHome(){
     window.open("index.html", "_self", false);
 }
 
+var reviewObject;
+function updateReviewTitle(){
+    bookId = parseId();
+    var Book = Parse.Object.extend("Book");
+    var query = new Parse.Query(Book);
+    query.get(bookId, {
+      success: function(object) {
+          reviewObject = object;
+          var bookTitle = object.get("title");
+          var title = document.getElementById('leaveReviewTitle').innerHTML;
+          document.getElementById('leaveReviewTitle').innerHTML = title + "\"" + bookTitle + "\"";
+      },
+      error: function(object, error) {
+      }
+    });
+}
+
 function addBook(){
     var title = document.getElementById('bookTitle').value;
     var authorArray = [document.getElementById('author').value];
@@ -168,28 +185,17 @@ function submitReview(){
     review.set("isNecessary", didRecommend);
     review.save(null, {
       success: function(review) {
-        var bookId = parseId();
-        var Book = Parse.Object.extend("Book");
-        var query = new Parse.Query(Book);
-        query.get(bookId, {
-          success: function(object) {
-              var array = object.get("reviews");
-              array.push(review.id);
-              object.set("reviews", array);
-              object.save(null, {
-                  success: function(object){
-                      alert('Thank you for reviewing this textbook!');
-                      window.open("index.html", "_self", false);
-                  },
-                  error: function(object,error){
-                  }
-              });
-          },
-
-          error: function(object, error) {
-          }
+        var array = reviewObject.get("reviews");
+        array.push(review.id);
+        reviewObject.set("reviews", array);
+        reviewObject.save(null, {
+            success: function(object){
+                alert('Thank you for reviewing this textbook!');
+                window.open("index.html", "_self", false);
+            },
+            error: function(object,error){
+            }
         });
-
       },
       error: function(review, error) {
       }
