@@ -35,6 +35,7 @@ function createBook(title, authors, course, schools) {
   var Book = Parse.Object.extend("Book");
   var book = new Book();
   book.set("title", title);
+  book.set("lowercaseTitle", title.toLowerCase());
   book.set("authors", authors);
   book.set("course", course);
   book.set("schools", schools);
@@ -165,7 +166,7 @@ function loadResults(){
     searchString = searchString.replace(/%20/g, " ");
     var Book = Parse.Object.extend("Book");
     var query = new Parse.Query(Book);
-    query.equalTo("title", searchString);
+    query.equalTo("lowercaseTitle", searchString.toLowerCase());
     query.find({
     success: function(results) {
         if(results.length == 0){
