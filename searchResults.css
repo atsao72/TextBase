@@ -4,6 +4,21 @@ body {
     background-size: cover;
 }
 
+.navbar-default {
+    background:transparent;
+    border: 0px;
+}
+
+a:link {
+    text-decoration: none;
+    font-family: niceLooking;
+    font-size: 55px;
+}
+
+a:hover{
+    text-decoration: none;
+}
+
 p {
     padding-left: 15px;
     text-align: left;
@@ -24,7 +39,6 @@ h2{
 }
 
 #searchIcon{
-    float: right;
     width: 70px;
     height: 70px;
 }

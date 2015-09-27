@@ -3,24 +3,32 @@
 
 <head>
   <title>TextBase</title>
-  <link href="searchResults.css" rel="stylesheet">
   <script src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
   <script src="js/parse-1.6.0.js"></script>
   <script type="text/javascript" src="js/scripts.js"></script>
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link href="searchResults.css" rel="stylesheet">
   <script>
     Parse.initialize("FDonHTCx7nlLpLrYbp07ff8SO17AwmzgnjcFLksn", "7FNp6JUVqEpr3k2E3JbYH23JY5M8735csrNKiLDf");
   </script>
 </head>
 
 <body onload="loadResults();">
+    <nav class = "navbar navbar-default">
+        <div class= "container-fluid">
+            <div class="navbar-header">
+                <a href="index.html">TextBase</a>
+            </div>
+            <div class = "pull-right">
+                <a href="index.html"><img id="searchIcon" src="searchIcon.png"></a>
+            </div>
+        </div>
+    </nav>
+
     <form name="searchResult">
         <input type="hidden" name="input">
     </form>
 
-    <div>
-        <h1 id "header">Search Results</h1>
-        <input type="image" id="searchIcon" src="searchIcon.png" onclick="goHome();"></input>
-    </div>
 
   <hr>
   <div id = "bookEntry">
@@ -30,7 +38,6 @@
       <p id="college">College</p>
       <input id="readReviews" type="button" value="Reviews" onclick="readReviews();"></input>
   </div>
-  <hr>
 
 </body>
 

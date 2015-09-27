@@ -8,6 +8,21 @@ body {
     font-family: niceLooking;
 }
 
+.navbar-default {
+    background:transparent;
+    border: 0px;
+}
+
+a:link {
+    text-decoration: none;
+    font-family: niceLooking;
+    font-size: 55px;
+}
+
+a:hover{
+    text-decoration: none;
+}
+
 #textBase {
     font-size: 500%;
 }
@@ -15,22 +30,13 @@ body {
     font-size: 200%;
 }
 
-fieldset {
-  font-size: 1em;
-  padding: 1em;
-  border-radius: 1em;
-  font-family: sans-serif;
-  border: 0;
-}
-
-input{
-    font-size: inherit;
+input[type=text]{
+    font-size: 20px;
     padding: .5em;
     margin: 0.1em 0.2em;
     /* the following ensures they're all using the same box-model for rendering */
-    -moz-box-sizing: content-box; /* or `border-box` */
-    -webkit-box-sizing: content-box;
-    box-sizing: content-box;
+    width:150px;
+    height:40px;
 }
 
 input[type=button]{

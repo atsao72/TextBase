@@ -8,6 +8,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.28/angular.min.js"></script>
   <script src="js/parse-1.6.0.js"></script>
   <script type="text/javascript" src="js/scripts.js"></script>
+  <link rel="stylesheet" href="css/bootstrap.min.css">
   <link href="landing.css" rel="stylesheet">
   <script>
     Parse.initialize("FDonHTCx7nlLpLrYbp07ff8SO17AwmzgnjcFLksn", "7FNp6JUVqEpr3k2E3JbYH23JY5M8735csrNKiLDf");
@@ -15,13 +16,23 @@
 </head>
 
 <body>
+    <nav class = "navbar navbar-default">
+        <div class= "container-fluid">
+            <div class="navbar-header">
+                <a href="index.html">TextBase</a>
+            </div>
+        </div>
+    </nav>
+
   <div class="center">
       <p id="textBase">TextBase</p>
       <p id="subtext">Are your textbooks really necessary?</p>
+      <fieldset id="search1">
          <input id= "searchBar" type="text" name="input" placeholder="Search for a textbook">
          <input id="go1" type="button" value="Go" onclick="search()">
+      </fieldset>
       <fieldset id="search2">
-        <input id="searchBar" placeholder="Search for a college"></input>
+        <input id="searchBar" type="text" placeholder="Search for a college"></input>
         <input id="go2" type="button" value="Go">
       </fieldset>
   </div>
