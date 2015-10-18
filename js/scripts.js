@@ -227,6 +227,16 @@ function search() {
     window.open(url, "_self", false);
 }
 
+function searchKeyPress(e)
+{
+    // look for window.event in case event isn't passed in
+    e = e || window.event;
+    if (e.keyCode == 13)
+    {
+        document.getElementById('go1').click();
+    }
+}
+
 function submitReview(){
     var radios = document.getElementsByName('recommend');
     var didRecommend = false;
