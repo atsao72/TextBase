@@ -43,7 +43,11 @@ h2{
     height: 70px;
 }
 
-input[type=button]{
+#reviewBtn{
+    padding-left: 15px;
+}
+
+.btn{
     display:       inline-block;
     padding:       7px 10px;
     background:    #374653 url('http://dabuttonfactory.com/button.png?w=1&h=44&bgt=gradient&bgc=5e87ac&ebgc=374653') repeat-x;
@@ -54,9 +58,13 @@ input[type=button]{
     border-radius: 5px;
     color:         #fff;
     font-family: niceLooking;
-    font-size: 25px;
+    font-size: 22px;
     text-align:    center;
     text-shadow:   1px 1px 0 #000;
+}
+
+.input-group{
+    padding-top: 26px;
 }
 
 @font-face {

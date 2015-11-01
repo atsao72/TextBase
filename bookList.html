@@ -19,8 +19,13 @@
             <div class="navbar-header">
                 <a href="index.html">TextBase</a>
             </div>
-            <div class = "pull-right">
-                <a href="index.html"><img id="searchIcon" src="searchIcon.png"></a>
+            <div class="col-sm-3 col-lg-offset-4 pull-right">
+                <div class="input-group">
+                    <input id="searchBar" type="text" class="form-control input-lg" placeholder="Search..." onkeypress="searchKeyPress(event);">
+                    <span class="input-group-btn">
+                        <button id="go1" class="btn btn-default" type="button" onclick="search()">Go!</button>
+                    </span>
+                </div>
             </div>
         </div>
     </nav>
@@ -36,7 +41,9 @@
       <p id="author">Author(s)</p>
       <p id="course">Course</p>
       <p id="college">College</p>
-      <input id="readReviews" type="button" value="Reviews" onclick="readReviews();"></input>
+      <div id="reviewBtn">
+          <button class="btn" id="readReviews" type="button" onclick="readReviews();">Reviews</button>
+      </div>
   </div>
 
 </body>
