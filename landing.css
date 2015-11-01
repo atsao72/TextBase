@@ -39,7 +39,7 @@ input[type=text]{
     height:40px;
 }
 
-input[type=button]{
+.btn{
     display:       inline-block;
     padding:       7px 10px;
     background:    #374653 url('http://dabuttonfactory.com/button.png?w=1&h=44&bgt=gradient&bgc=5e87ac&ebgc=374653') repeat-x;
